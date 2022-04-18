@@ -1,6 +1,6 @@
 import React from 'react';
 import IssProvider from './context/IssProvider';
-import Table from './componentes/Table';
+import Table from './pages/Table';
 import './App.css';
 
 function App() {
