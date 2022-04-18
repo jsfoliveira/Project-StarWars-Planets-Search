@@ -1,28 +1,27 @@
 import React, { useContext } from 'react';
 import IssContext from '../context/IssContext';
-import './TBody.css';
 
 function TBody() {
   const { data } = useContext(IssContext);
   console.log(data);
 
   return (
-    <div className="tbody">
+    <div>
       {data.map((element) => (
         <tr key={ element.name }>
-          <td className="tbody">{element.name}</td>
-          <td className="tbody">{element.rotation_period}</td>
-          <td className="tbody">{element.orbital_period}</td>
-          <td className="tbody">{element.diameter}</td>
-          <td className="tbody">{element.climate}</td>
-          <td className="tbody">{element.gravity}</td>
-          <td className="tbody">{element.terrain}</td>
-          <td className="tbody">{element.surface_water}</td>
-          <td className="tbody">{element.population}</td>
-          <td className="tbody">{element.films}</td>
-          <td className="tbody">{element.created}</td>
-          <td className="tbody">{element.edited}</td>
-          <td className="tbody">{element.url}</td>
+          <td>{element.name}</td>
+          <td>{element.rotation_period}</td>
+          <td>{element.orbital_period}</td>
+          <td>{element.diameter}</td>
+          <td>{element.climate}</td>
+          <td>{element.gravity}</td>
+          <td>{element.terrain}</td>
+          <td>{element.surface_water}</td>
+          <td>{element.population}</td>
+          <td>{element.films}</td>
+          <td>{element.created}</td>
+          <td>{element.edited}</td>
+          <td>{element.url}</td>
         </tr>))}
     </div>
   );
