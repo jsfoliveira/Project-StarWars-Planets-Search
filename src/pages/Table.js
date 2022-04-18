@@ -1,12 +1,20 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import THead from '../componentes/THead';
-import TBody from '../componentes/TBody';
 import IssContext from '../context/IssContext';
 
 function Table() {
-  const { data } = useContext(IssContext);
+  const { data, nameFilter, setName } = useContext(IssContext);
   console.log(data);
-  const [nameFilter, setName] = useState(' ');
+  // Desconstruir o name que contém o texto digitado no input.
+  const { filterByName: { name } } = nameFilter;
+  // Controlar o texto digitado no input.
+  const handleChange = (event) => {
+    setName({
+      filterByName: {
+        name: event.target.value,
+      },
+    });
+  };
 
   return (
     <div>
@@ -17,8 +25,7 @@ function Table() {
           id="nameFilter"
           name="nameFilter"
           data-testid="name-filter"
-          value={ nameFilter }
-          onChange={ (event) => setName(event.target.value) }
+          onChange={ handleChange }
         />
       </label>
       <table>
@@ -26,10 +33,24 @@ function Table() {
           <THead />
         </thead>
         <tbody>
-          <TBody />
-          {/* { nameFilter.length === 0 && (
-            <TBody />
-          )} */}
+          {data.filter((el) => el.name.includes(name))
+            .map((element) => (
+              <tr key={ element.name }>
+                <td>{element.name}</td>
+                <td>{element.rotation_period}</td>
+                <td>{element.orbital_period}</td>
+                <td>{element.diameter}</td>
+                <td>{element.climate}</td>
+                <td>{element.gravity}</td>
+                <td>{element.terrain}</td>
+                <td>{element.surface_water}</td>
+                <td>{element.population}</td>
+                <td>{element.films}</td>
+                <td>{element.created}</td>
+                <td>{element.edited}</td>
+                <td>{element.url}</td>
+              </tr>
+            ))}
         </tbody>
       </table>
     </div>
