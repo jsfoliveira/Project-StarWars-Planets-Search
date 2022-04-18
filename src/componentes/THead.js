@@ -1,22 +1,21 @@
 import React from 'react';
-import './THead.css';
 
 function THead() {
   return (
     <tr>
-      <th className="thead">Name</th>
-      <th className="thead">Rotation Period</th>
-      <th className="thead">Orbital Preiod</th>
-      <th className="thead">Diameter</th>
-      <th className="thead">Climate</th>
-      <th className="thead">Gravity</th>
-      <th className="thead">Terrain</th>
-      <th className="thead">Surface Water</th>
-      <th className="thead">Population</th>
-      <th className="thead">Films</th>
-      <th className="thead">Created</th>
-      <th className="thead">Edited</th>
-      <th className="thead">URL</th>
+      <th>Name</th>
+      <th>Rotation Period</th>
+      <th>Orbital Preiod</th>
+      <th>Diameter</th>
+      <th>Climate</th>
+      <th>Gravity</th>
+      <th>Terrain</th>
+      <th>Surface Water</th>
+      <th>Population</th>
+      <th>Films</th>
+      <th>Created</th>
+      <th>Edited</th>
+      <th>URL</th>
     </tr>
   );
 }
