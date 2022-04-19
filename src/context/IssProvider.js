@@ -5,10 +5,6 @@ import IssContext from './IssContext';
 function IssProvider({ children }) {
   // É toda a informação da requisição.
   const [data, setData] = useState([]);
-  // Requisito 3
-  const [columnFilter, setColumnFilter] = useState('');
-  const [comparationFilter, setComparationFilter] = useState('');
-  const [numberFilter, setNumberFilter] = useState(0);
 
   // O requisito pediu dessa forma.
   const [nameFilter, setName] = useState(
@@ -18,6 +14,11 @@ function IssProvider({ children }) {
       },
     },
   );
+  const [filterValues, setfilterValues] = useState([]);
+  const [filteredPlanet, setFilteredPlanet] = useState([]);
+  const [columnFilter, setColumnFilter] = useState('population');
+  const [comparationFilter, setComparationFilter] = useState('maior que');
+  const [numberFilter, setNumberFilter] = useState(0);
 
   const requestApi = async () => {
     const endpoint = 'https://swapi-trybe.herokuapp.com/api/planets/';
@@ -25,16 +26,18 @@ function IssProvider({ children }) {
     const response = await request.json();
     return response.results;
   };
-
   useEffect(() => {
     requestApi().then(setData);
   }, []);
-
   const values = {
     data,
     setData,
     nameFilter,
     setName,
+    filteredPlanet,
+    setFilteredPlanet,
+    filterValues,
+    setfilterValues,
     columnFilter,
     setColumnFilter,
     comparationFilter,
@@ -42,7 +45,6 @@ function IssProvider({ children }) {
     numberFilter,
     setNumberFilter,
   };
-
   return (
     <div>
       <IssContext.Provider value={ values }>
@@ -51,9 +53,7 @@ function IssProvider({ children }) {
     </div>
   );
 }
-
 IssProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
-
 export default IssProvider;
