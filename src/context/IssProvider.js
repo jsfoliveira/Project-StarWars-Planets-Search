@@ -5,6 +5,10 @@ import IssContext from './IssContext';
 function IssProvider({ children }) {
   // É toda a informação da requisição.
   const [data, setData] = useState([]);
+  // Requisito 3
+  const [columnFilter, setColumnFilter] = useState('');
+  const [comparationFilter, setComparationFilter] = useState('');
+  const [numberFilter, setNumberFilter] = useState(0);
 
   // O requisito pediu dessa forma.
   const [nameFilter, setName] = useState(
@@ -15,8 +19,6 @@ function IssProvider({ children }) {
     },
   );
 
-  const [filteredName, setFilteredName] = useState([]);
-
   const requestApi = async () => {
     const endpoint = 'https://swapi-trybe.herokuapp.com/api/planets/';
     const request = await fetch(endpoint);
@@ -26,7 +28,6 @@ function IssProvider({ children }) {
 
   useEffect(() => {
     requestApi().then(setData);
-    // requestApi().then(setName);
   }, []);
 
   const values = {
@@ -34,8 +35,12 @@ function IssProvider({ children }) {
     setData,
     nameFilter,
     setName,
-    filteredName,
-    setFilteredName,
+    columnFilter,
+    setColumnFilter,
+    comparationFilter,
+    setComparationFilter,
+    numberFilter,
+    setNumberFilter,
   };
 
   return (

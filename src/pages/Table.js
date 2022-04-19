@@ -1,9 +1,20 @@
 import React, { useContext } from 'react';
+import Search from '../componentes/Search';
 import THead from '../componentes/THead';
 import IssContext from '../context/IssContext';
 
 function Table() {
-  const { data, nameFilter, setName } = useContext(IssContext);
+  const {
+    data,
+    nameFilter,
+    setName,
+    // columnFilter,
+    // setColumnFilter,
+    // comparationFilter,
+    // setComparationFilter,
+    // numberFilter,
+    // setNumberFilter,
+  } = useContext(IssContext);
   console.log(data);
   // Desconstruir o name que contém o texto digitado no input.
   const { filterByName: { name } } = nameFilter;
@@ -28,6 +39,9 @@ function Table() {
           onChange={ handleChange }
         />
       </label>
+
+      <Search />
+
       <table>
         <thead>
           <THead />
