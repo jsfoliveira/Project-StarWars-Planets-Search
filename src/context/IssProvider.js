@@ -19,6 +19,7 @@ function IssProvider({ children }) {
     setFilterPlanets(planets.filter((el) => el.name.includes(name)));
   };
   // Reuqisito 3: Esse array vazio receberá todo o conjunto de filtro.
+  // teste
   const [filterValues, setfilterValues] = useState([]);
   const [columnFilter, setColumnFilter] = useState('population');
   const [comparationFilter, setComparationFilter] = useState('maior que');
@@ -41,6 +42,7 @@ function IssProvider({ children }) {
     });
     setFilterPlanets(filtro);
   };
+  // teste.
   // Quando clicar no button, vai serr renderizado todo o conteúdo do filtro que foi feito a partir da função calculation. Parece que precisa dessa objeto para o próximo requisito, eu acho.
   const handleClick = () => {
     const object = {

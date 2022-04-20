@@ -17,10 +17,11 @@ function Table() {
     setNumberFilter,
     handleClick,
   } = useContext(IssContext);
+  // teste
 
   return (
     <div>
-      <h1>Projeto Star Wars - Trybe</h1>
+      <h1>Projeto Star Wars - Trybe.</h1>
       <label
         htmlFor="nameFilter"
       >
