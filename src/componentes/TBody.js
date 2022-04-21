@@ -3,6 +3,7 @@ import IssContext from '../context/IssContext';
 
 function TBody() {
   const { filterPlanets } = useContext(IssContext);
+
   return (
     <div>
       {filterPlanets.map((element) => (

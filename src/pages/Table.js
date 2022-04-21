@@ -16,12 +16,13 @@ function Table() {
     numberFilter,
     setNumberFilter,
     handleClick,
+    filterValues,
   } = useContext(IssContext);
-  // teste
-
+  console.log(filterValues);
+  console.log(filterValues.column);
   return (
     <div>
-      <h1>Projeto Star Wars - Trybe.</h1>
+      <h1>Projeto Star Wars - Trybe</h1>
       <label
         htmlFor="nameFilter"
       >
@@ -30,7 +31,7 @@ function Table() {
           type="text"
           name="name"
           data-testid="name-filter"
-          value={ nameFilter }
+          value={ nameFilter.name }
           onChange={ (event) => filteredName(event.target.value) }
         />
       </label>
@@ -40,6 +41,7 @@ function Table() {
       >
         <select
           id="columnFilter "
+          name="columnFilter "
           value={ columnFilter }
           data-testid="column-filter"
           onChange={ (event) => setColumnFilter(event.target.value) }
@@ -54,6 +56,7 @@ function Table() {
       >
         <select
           id="comparationFilter"
+          name="comparationFilter"
           data-testid="comparison-filter"
           value={ comparationFilter }
           onChange={ (event) => setComparationFilter(event.target.value) }
@@ -68,6 +71,7 @@ function Table() {
       >
         <input
           id="valueFilter"
+          name="valueFilter"
           data-testid="value-filter"
           type="number"
           value={ numberFilter }
@@ -82,6 +86,17 @@ function Table() {
       >
         Filtrar
       </button>
+
+      <div>
+        {filterValues.map((element) => (
+          <p key={ element.columnFilter }>
+            {`${element.columnFilter} |
+            ${element.comparationFilter} |
+            ${element.numberFilter}`}
+          </p>
+        ))}
+      </div>
+
       <table>
         <thead>
           <THead />

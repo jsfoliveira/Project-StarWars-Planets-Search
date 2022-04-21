@@ -18,8 +18,7 @@ function IssProvider({ children }) {
   const filteredName = (name) => {
     setFilterPlanets(planets.filter((el) => el.name.includes(name)));
   };
-  // Reuqisito 3: Esse array vazio receberá todo o conjunto de filtro.
-  // teste
+  // Requisito 3: Esse array vazio receberá todo o conjunto de filtro.
   const [filterValues, setfilterValues] = useState([]);
   const [columnFilter, setColumnFilter] = useState('population');
   const [comparationFilter, setComparationFilter] = useState('maior que');
@@ -42,15 +41,28 @@ function IssProvider({ children }) {
     });
     setFilterPlanets(filtro);
   };
-  // teste.
-  // Quando clicar no button, vai serr renderizado todo o conteúdo do filtro que foi feito a partir da função calculation. Parece que precisa dessa objeto para o próximo requisito, eu acho.
+  // Para usar os options do columnFilter.
+  const option = ['population', 'orbital_period',
+    'diameter', 'rotation_period', 'surface_water'];
+  const [optionColumn, setOptionColumn] = useState(option);
+
+  const objeto = {
+    column: columnFilter,
+    comparison: comparationFilter,
+    value: numberFilter,
+  };
+  const repeatColumn = () => {
+    const filter = filterValues.map((el) => el.column);
+    const newFilter = optionColumn.filter((column) => !filter.includes(column));
+    setOptionColumn(newFilter);
+    // const newFilter = optionColumn.filter((element) => !element.includes(objeto.column));
+  };
+
+  // Quando clicar no button, vai ser renderizado todo o conteúdo do filtro que foi feito a partir da função calculation. O setfilterValue vai ser usado para renderizar as informações do filtro na tela.
   const handleClick = () => {
-    const object = {
-      column: columnFilter,
-      comparison: comparationFilter,
-      value: numberFilter,
-    };
-    calculation([...filterValues, object]);
+    calculation([objeto, ...filterValues]);
+    setfilterValues([objeto, ...filterValues]);
+    setOptionColumn(repeatColumn);
   };
 
   // A requisição precisa buscar a informação que tem a chave results. Toda vez que atuliaza a página, o setFilterPlanets recebe o resultado da requisição. Por isso que a página já fica com a tabela montada toda vez que atualiza a página. O setPlanet é quando é digitado o nome do planeta no input.
@@ -84,6 +96,8 @@ function IssProvider({ children }) {
     numberFilter,
     setNumberFilter,
     handleClick,
+    optionColumn,
+    setOptionColumn,
   };
 
   return (
