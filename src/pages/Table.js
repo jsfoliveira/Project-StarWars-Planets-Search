@@ -4,8 +4,6 @@ import TBody from '../componentes/TBody';
 import IssContext from '../context/IssContext';
 
 function Table() {
-  const option = ['population', 'orbital_period',
-    'diameter', 'rotation_period', 'surface_water'];
   const {
     nameFilter,
     filteredName,
@@ -17,9 +15,8 @@ function Table() {
     setNumberFilter,
     handleClick,
     filterValues,
+    optionColumn,
   } = useContext(IssContext);
-  console.log(filterValues);
-  console.log(filterValues.column);
   return (
     <div>
       <h1>Projeto Star Wars - Trybe</h1>
@@ -46,7 +43,7 @@ function Table() {
           data-testid="column-filter"
           onChange={ (event) => setColumnFilter(event.target.value) }
         >
-          {option.map((element, index) => (
+          {optionColumn.map((element, index) => (
             <option key={ index } value={ element }>{ element }</option>
           ))}
         </select>
@@ -89,10 +86,10 @@ function Table() {
 
       <div>
         {filterValues.map((element) => (
-          <p key={ element.columnFilter }>
-            {`${element.columnFilter} |
-            ${element.comparationFilter} |
-            ${element.numberFilter}`}
+          <p key={ element.column }>
+            {`${element.column} |
+            ${element.comparison} |
+            ${element.value}`}
           </p>
         ))}
       </div>

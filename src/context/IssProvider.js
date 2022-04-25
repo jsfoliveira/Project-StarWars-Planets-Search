@@ -41,27 +41,25 @@ function IssProvider({ children }) {
     });
     setFilterPlanets(filtro);
   };
-  // Para usar os options do columnFilter.
-  const option = ['population', 'orbital_period',
-    'diameter', 'rotation_period', 'surface_water'];
-  const [optionColumn, setOptionColumn] = useState(option);
 
   const objeto = {
     column: columnFilter,
     comparison: comparationFilter,
     value: numberFilter,
   };
+  // Requisito 5:  Para usar os options do columnFilter, eu usei o optionColumn, que receberá todas as options usadas. Esse optionColumn será atualizado ao clicar no botão, que chamará a função repeatColumn, que diz que, se o column não tiver sido usad, então filtre. Esse filtro vai ser atualizado no setOptionColumn.
+  const option = ['population', 'orbital_period',
+    'diameter', 'rotation_period', 'surface_water'];
+  const [optionColumn, setOptionColumn] = useState([...option]);
   const repeatColumn = () => {
-    const filter = filterValues.map((el) => el.column);
-    const newFilter = optionColumn.filter((column) => !filter.includes(column));
-    setOptionColumn(newFilter);
-    // const newFilter = optionColumn.filter((element) => !element.includes(objeto.column));
+    const filtro = optionColumn
+      .filter((element) => element.includes(objeto.column) !== true);
+    setOptionColumn(filtro);
   };
-
   // Quando clicar no button, vai ser renderizado todo o conteúdo do filtro que foi feito a partir da função calculation. O setfilterValue vai ser usado para renderizar as informações do filtro na tela.
   const handleClick = () => {
     calculation([objeto, ...filterValues]);
-    setfilterValues([objeto, ...filterValues]);
+    setfilterValues([...filterValues]);
     setOptionColumn(repeatColumn);
   };
 
